@@ -26,6 +26,7 @@ namespace Alura.ListaLeitura.App
             builder.MapRoute("Livros/Lidos", LivrosLidos);
             builder.MapRoute("Cadastro/NovoLivro/{nome}/{autor}", NovoLivroParaLer);
             builder.MapRoute("Livros/Detalhes/{id:int}",ExibeDetalhes);
+            builder.MapRoute("Cadastro/NovoLivro", ExibeFormulario);
             var rotas = builder.Build();
 
             app.UseRouter(rotas);
@@ -89,6 +90,19 @@ namespace Alura.ListaLeitura.App
             var repo = new LivroRepositorioCSV();
             var livro = repo.Todos.First(l => l.Id == id);
             return context.Response.WriteAsync(livro.Detalhes());
+        }
+
+        private Task ExibeFormulario(HttpContext context)
+        {
+            var html = @"
+            <html>
+                <form>
+                    <input/>
+                    <input/>
+                    <button>Gravar</button>
+                </form>
+            </html>";
+            return context.Response.WriteAsync(html);
         }
     }
 }
