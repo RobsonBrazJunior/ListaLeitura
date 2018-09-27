@@ -24,33 +24,38 @@ namespace Alura.ListaLeitura.App.Logica
             return conteudoArquivo.Replace("#NOVO-ITEM#", "");
         }
 
-        public static Task LivrosParaLer(HttpContext context)
+        public static Task ParaLer(HttpContext context)
         {
             var _repo = new LivroRepositorioCSV();
             var html = CarregaLista(_repo.ParaLer.Livros);
             return context.Response.WriteAsync(html);
         }
 
-        public static Task LivrosLendo(HttpContext context)
+        public static Task Lendo(HttpContext context)
         {
             var _repo = new LivroRepositorioCSV();
             var html = CarregaLista(_repo.Lendo.Livros);
             return context.Response.WriteAsync(html);
         }
 
-        public static Task LivrosLidos(HttpContext context)
+        public static Task Lidos(HttpContext context)
         {
             var _repo = new LivroRepositorioCSV();
             var html = CarregaLista(_repo.Lidos.Livros);
             return context.Response.WriteAsync(html);
         }
 
-        public static Task ExibeDetalhes(HttpContext context)
+        public static Task Detalhes(HttpContext context)
         {
             int id = Convert.ToInt32(context.GetRouteValue("id"));
             var repo = new LivroRepositorioCSV();
             var livro = repo.Todos.First(l => l.Id == id);
             return context.Response.WriteAsync(livro.Detalhes());
+        }
+
+        public static Task Tester(HttpContext context)
+        {
+            return context.Response.WriteAsync("Nova funcionalidade implementada");
         }
     }
 }
