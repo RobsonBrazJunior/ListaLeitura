@@ -17,7 +17,7 @@ namespace Alura.ListaLeitura.App.Logica
 
         public IActionResult ExibeFormulario()
         {
-            var html = new ViewResult { ViewName = "formulario.html" };
+            var html = new ViewResult { ViewName = "formulario" };
             return html;
         }
     }
